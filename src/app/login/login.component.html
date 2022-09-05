@@ -1,1 +1,19 @@
-<p>login works!</p>
+<h1>Enter Login Details</h1>
+<form>
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example1">Userrname</label>
+      <input [(ngModel)]="userName" name="userName" id="form2Example1" class="form-control" />
+    </div>
+  
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">Password</label>
+      <input [(ngModel)]="password" name="password" type="password" id="form2Example2" class="form-control" />
+    </div>
+  
+    <!-- Submit button -->
+    <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+
+  </form>
+
