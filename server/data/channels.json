@@ -1,0 +1,12 @@
+[
+    {
+        "channelID": 0,
+        "groupID": 0,
+        "channelName": "Channel 1"
+    },
+    {
+        "channelID": 1,
+        "groupID": 0,
+        "channelName": "Channel 2"
+    }
+]

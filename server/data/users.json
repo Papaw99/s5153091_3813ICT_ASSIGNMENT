@@ -1,0 +1,16 @@
+[
+    {
+        "userName": "Super",
+        "Email": "super@gmail.com",
+        "userID": 0,
+        "role": "superAdmin",
+        "passWord": "06092022"
+    },
+    {
+        "userName": "Usama",
+        "Email": "usama.siddiqui5@gmail.com",
+        "userID": 1,
+        "role": "groupAdmin",
+        "password": "02111999"
+    }
+]
