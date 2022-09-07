@@ -1,16 +1,18 @@
 [
     {
         "userName": "Super",
-        "Email": "super@gmail.com",
+        "email": "super@gmail.com",
         "userID": 0,
         "role": "superAdmin",
-        "passWord": "06092022"
+        "passWord": "06092022",
+        "valid": false
     },
     {
         "userName": "Usama",
-        "Email": "usama.siddiqui5@gmail.com",
+        "email": "usama.siddiqui5@gmail.com",
         "userID": 1,
         "role": "groupAdmin",
-        "password": "02111999"
+        "password": "02111999",
+        "valid": false
     }
 ]
