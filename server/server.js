@@ -116,3 +116,31 @@ app.post('/api/deleteUser', function(req, res){
     }
 
 })
+
+app.post('/api/deleteGroup', function(req, res){
+    
+    if(!req.body){
+        console.log('Request data invalid')
+        return res.sendStatus(400)
+    }
+
+    for (let i=0; i < groups.length; i++){
+        if(req.body.groupID == groups[i].groupID){
+          groups.splice(i, 1)
+          let newGroupsArray = JSON.stringify(groups)
+          fs.writeFileSync("./data/groups.json", newGroupsArray)
+        }
+        else{
+            continue
+        }
+    }
+
+})
+
+app.post('/api/createGroup', function(req, res){
+    let newGroup = {"groupID": groups.length, "groupName": req.body.groupName}
+    groups.push(newGroup)
+    let newGroupsArray = JSON.stringify(groups)
+    fs.writeFileSync("./data/groups.json", newGroupsArray)
+    console.log(groups)
+})

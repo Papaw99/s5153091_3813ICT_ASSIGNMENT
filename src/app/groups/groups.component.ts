@@ -54,4 +54,11 @@ export class GroupsComponent implements OnInit {
     }) 
   }
 
+  deleteGroup(){
+    let bodyData = {"groupID": this.group}
+    this.http.post('http://localhost:3000/api/deleteGroup', bodyData).subscribe(res=>{
+      alert(this.group + "Deteled!")
+    })
+  }
+
 }

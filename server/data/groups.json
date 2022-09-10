@@ -1,10 +1,1 @@
-[
-    {
-        "groupID": 0,
-        "groupName": "Group 1"
-    },
-    {
-        "groupID": 1,
-        "groupName": "Group 2"
-    }
-]
+[{"groupID":0,"groupName":"Group 1"},{"groupID":1,"groupName":"Group 2"},{"groupID":2,"groupName":"Test"}]

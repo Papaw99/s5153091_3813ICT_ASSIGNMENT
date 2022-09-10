@@ -13,6 +13,7 @@ import { GroupsComponent } from './groups/groups.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { EditPermsComponent } from './edit-perms/edit-perms.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
+import { CreateGroupComponent } from './create-group/create-group.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { DeleteUserComponent } from './delete-user/delete-user.component';
     GroupsComponent,
     CreateUserComponent,
     EditPermsComponent,
-    DeleteUserComponent
+    DeleteUserComponent,
+    CreateGroupComponent
   ],
   imports: [
     BrowserModule,
