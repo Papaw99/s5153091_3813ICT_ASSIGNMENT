@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     this.http.post('http://localhost:3000/api/auth', bodyData).subscribe(res =>{
       let response:any = res
       if (response.valid == true) {
+        localStorage.setItem("userID", response.userID)
         localStorage.setItem("userName",response.userName)
         localStorage.setItem("email",response.email)
         localStorage.setItem("role", response.role)

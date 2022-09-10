@@ -68,6 +68,14 @@ app.get('/api/getUsers', function(req, res){
     res.send(users)
 })
 
+app.get('/api/getGroups', function(req, res){
+    res.send(groups)
+})
+
+app.get('/api/getGroupMemberships', function(req, res){
+    res.send(groupMemberships)
+})
+
 app.post('/api/changeRole', function(req, res){
     
     if(!req.body){
