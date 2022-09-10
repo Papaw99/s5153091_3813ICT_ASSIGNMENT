@@ -12,6 +12,7 @@ import { AccountManagementComponent } from './account-management/account-managem
 import { GroupsComponent } from './groups/groups.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { EditPermsComponent } from './edit-perms/edit-perms.component';
+import { DeleteUserComponent } from './delete-user/delete-user.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { EditPermsComponent } from './edit-perms/edit-perms.component';
     AccountManagementComponent,
     GroupsComponent,
     CreateUserComponent,
-    EditPermsComponent
+    EditPermsComponent,
+    DeleteUserComponent
   ],
   imports: [
     BrowserModule,

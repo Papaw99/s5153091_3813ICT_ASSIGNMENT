@@ -6,13 +6,15 @@ import { AccountManagementComponent } from './account-management/account-managem
 import { GroupsComponent } from './groups/groups.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { EditPermsComponent } from './edit-perms/edit-perms.component';
+import { DeleteUserComponent } from './delete-user/delete-user.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'account-management', component: AccountManagementComponent},
   {path: 'groups', component: GroupsComponent},
   {path: 'create-user', component: CreateUserComponent},
-  {path: 'edit-perms', component: EditPermsComponent}
+  {path: 'edit-perms', component: EditPermsComponent},
+  {path: 'delete-user', component: DeleteUserComponent}
 ]
 
 
