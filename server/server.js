@@ -25,10 +25,6 @@ let groupMemberships = JSON.parse(groupMembershipsRawData)
 let channelMemberships = JSON.parse(channelMembershipsRawData)
 
 
-app.listen(3000, '127.0.0.1', function(){
-    console.log('server has been started')
-})
-
 app.post('/api/auth', function(req, res){
 
     result = ""
@@ -54,4 +50,16 @@ app.post('/api/auth', function(req, res){
 
     res.send(result)
 
+})
+
+app.post('/api/createUser', function(req, res){
+    let newUser = {"userName": req.body.userName, "email": req.body.email, "userID": users.length, "role": req.body.role, "password": req.body.password, "valid": false}
+    users.push(newUser)
+    let newUserArray = JSON.stringify(users)
+    fs.writeFileSync("./data/users.json", newUserArray)
+    console.log(users)
+})
+
+app.listen(3000, '127.0.0.1', function(){
+    console.log('server has been started')
 })

@@ -1,0 +1,33 @@
+<br>
+<br>
+<form>
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Username</label>
+        <div class="col-sm-10">
+          <input [(ngModel)]="userName" name="userName" class="form-control">
+        </div>
+      </div>
+    <div class="row mb-3">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input [(ngModel)]="email" name="email" type="email" class="form-control">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <input [(ngModel)]="password" name="password" type="password" class="form-control" id="inputPassword3">
+      </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm 2 col-form-label">Role</label><br><br>
+        <div class="col-sm-10">
+            <select [(ngModel)]="role" name="role" class="form-select" id="autoSizingSelect">
+                <option value="user">User</option>
+                <option value="superAdmin">Super Admin</option>
+                <option value="groupAdmin">Group Admin</option>
+            </select>
+        </div>
+    </div><br><br>
+    <button (click)="createUser()" type="button" class="btn btn-primary">Register Account</button>
+  </form>

@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { AccountManagementComponent } from './account-management/account-management.component';
 import { GroupsComponent } from './groups/groups.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { GroupsComponent } from './groups/groups.component';
     AppComponent,
     LoginComponent,
     AccountManagementComponent,
-    GroupsComponent
+    GroupsComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,
