@@ -9,6 +9,8 @@ import { EditPermsComponent } from './edit-perms/edit-perms.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { ChannelsComponent } from './channels/channels.component';
+import { CreateChannelComponent } from './create-channel/create-channel.component';
+
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -18,7 +20,8 @@ const routes: Routes = [
   {path: 'edit-perms', component: EditPermsComponent},
   {path: 'delete-user', component: DeleteUserComponent},
   {path: 'create-group', component: CreateGroupComponent},
-  {path: 'channels/:groupID', component: ChannelsComponent}
+  {path: 'channels/:groupID', component: ChannelsComponent},
+  {path: 'create-channel/:groupID', component: CreateChannelComponent}
 ]
 
 

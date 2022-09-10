@@ -15,6 +15,7 @@ import { EditPermsComponent } from './edit-perms/edit-perms.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { ChannelsComponent } from './channels/channels.component';
+import { CreateChannelComponent } from './create-channel/create-channel.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ChannelsComponent } from './channels/channels.component';
     EditPermsComponent,
     DeleteUserComponent,
     CreateGroupComponent,
-    ChannelsComponent
+    ChannelsComponent,
+    CreateChannelComponent
   ],
   imports: [
     BrowserModule,

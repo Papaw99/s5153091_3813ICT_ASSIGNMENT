@@ -172,3 +172,11 @@ app.post('/api/deleteChannel', function(req, res){
     }
 
 })
+
+app.post('/api/createChannel', function(req, res){
+    let newChannel = {"channelID": channels.length, "groupID": req.body.groupID, "channelName": req.body.channelName}
+    channels.push(newChannel)
+    let newChannelsArray = JSON.stringify(channels)
+    fs.writeFileSync("./data/channels.json", newChannelsArray)
+    console.log(channels)
+})
