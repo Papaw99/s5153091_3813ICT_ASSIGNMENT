@@ -26,4 +26,11 @@ export class EditPermsComponent implements OnInit {
 
   }
 
+  changeRole(){
+    let bodyData = {"userName": this.userName, "role": this.role}
+    this.http.post('http://localhost:3000/api/changeRole', bodyData).subscribe(res=>{
+      console.log("Done")
+    })
+  }
+
 }

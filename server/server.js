@@ -67,3 +67,24 @@ app.listen(3000, '127.0.0.1', function(){
 app.get('/api/getUsers', function(req, res){
     res.send(users)
 })
+
+app.post('/api/changeRole', function(req, res){
+    
+    if(!req.body){
+        console.log('Request data invalid')
+        return res.sendStatus(400)
+    }
+
+    for (let i=0; i < users.length; i++){
+        if(req.body.userName == users[i].userName){
+          users[i].role = req.body.role
+          console.log(users[i])
+          let newUserArray = JSON.stringify(users)
+          fs.writeFileSync("./data/users.json", newUserArray)
+        }
+        else{
+            continue
+        }
+    }
+
+})
