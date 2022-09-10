@@ -19,8 +19,8 @@ export class CreateGroupComponent implements OnInit {
     let bodyData = {"groupName": this.groupName}
 
     this.http.post('http://localhost:3000/api/createGroup', bodyData).subscribe(res =>{
-      console.log("executed")
     })
+    alert(this.groupName+ " created")
   }
 
 }

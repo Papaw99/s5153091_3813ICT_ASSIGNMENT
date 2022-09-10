@@ -144,3 +144,31 @@ app.post('/api/createGroup', function(req, res){
     fs.writeFileSync("./data/groups.json", newGroupsArray)
     console.log(groups)
 })
+
+app.get('/api/getChannels', function(req, res){
+    res.send(channels)
+})
+
+app.get('/api/getChannelMemberships', function(req, res){
+    res.send(channelMemberships)
+})
+
+app.post('/api/deleteChannel', function(req, res){
+    
+    if(!req.body){
+        console.log('Request data invalid')
+        return res.sendStatus(400)
+    }
+
+    for (let i=0; i < channels.length; i++){
+        if(req.body.channelID == channels[i].channelID){
+          channels.splice(i, 1)
+          let newChannelsArray = JSON.stringify(channels)
+          fs.writeFileSync("./data/channels.json", newChannelsArray)
+        }
+        else{
+            continue
+        }
+    }
+
+})

@@ -8,5 +8,15 @@
         "channelID": 1,
         "groupID": 0,
         "channelName": "Channel 2"
+    },
+    {
+        "channelID": 2,
+        "groupID": 4,
+        "channelName": "Channel 3"
+    },
+    {
+        "channelID": 3,
+        "groupID": 5,
+        "channelName": "Channel 4"
     }
 ]
