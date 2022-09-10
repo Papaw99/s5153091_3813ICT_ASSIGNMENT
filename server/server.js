@@ -63,3 +63,7 @@ app.post('/api/createUser', function(req, res){
 app.listen(3000, '127.0.0.1', function(){
     console.log('server has been started')
 })
+
+app.get('/api/getUsers', function(req, res){
+    res.send(users)
+})

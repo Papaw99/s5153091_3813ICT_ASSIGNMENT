@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { AccountManagementComponent } from './account-management/account-management.component';
 import { GroupsComponent } from './groups/groups.component';
 import { CreateUserComponent } from './create-user/create-user.component';
+import { EditPermsComponent } from './edit-perms/edit-perms.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { CreateUserComponent } from './create-user/create-user.component';
     LoginComponent,
     AccountManagementComponent,
     GroupsComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    EditPermsComponent
   ],
   imports: [
     BrowserModule,
