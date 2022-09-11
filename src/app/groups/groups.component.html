@@ -11,6 +11,7 @@
             </select>
         </div>
     </div><br><br>
+    <button [routerLink] = "['/add-to-group', group]" type="button" class="btn btn-success">Add User</button><br><br>
     <button type="button" class="btn btn-warning">Add Group Assistant</button><br><br>
     <button (click)="deleteGroup()" type="button" class="btn btn-danger">Delete Group</button><br><br>
     <button [routerLink]="['/channels', group]" type="button" class="btn btn-primary">Go!</button><br><br>

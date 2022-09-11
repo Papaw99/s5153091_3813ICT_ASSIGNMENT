@@ -180,3 +180,11 @@ app.post('/api/createChannel', function(req, res){
     fs.writeFileSync("./data/channels.json", newChannelsArray)
     console.log(channels)
 })
+
+app.post('/api/addToGroup', function(req, res){
+    let newGroupMemberships = {"userID": req.body.userID, "groupID": req.body.groupID, "role": "member"}
+    groupMemberships.push(newGroupMemberships)
+    let newGroupMembershipsArray = JSON.stringify(groupMemberships)
+    fs.writeFileSync("./data/groupMemberships.json", newGroupMembershipsArray)
+    console.log(groupMemberships)
+})

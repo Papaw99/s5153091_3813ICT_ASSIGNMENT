@@ -10,6 +10,7 @@ import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { ChannelsComponent } from './channels/channels.component';
 import { CreateChannelComponent } from './create-channel/create-channel.component';
+import { AddToGroupComponent } from './add-to-group/add-to-group.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: 'delete-user', component: DeleteUserComponent},
   {path: 'create-group', component: CreateGroupComponent},
   {path: 'channels/:groupID', component: ChannelsComponent},
-  {path: 'create-channel/:groupID', component: CreateChannelComponent}
+  {path: 'create-channel/:groupID', component: CreateChannelComponent},
+  {path: 'add-to-group/:groupID', component: AddToGroupComponent}
 ]
 
 

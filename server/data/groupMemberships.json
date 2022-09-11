@@ -1,12 +1,1 @@
-[
-    {
-        "userID": 1,
-        "groupID": 0,
-        "role": "member"
-    },
-    {
-        "userID": 1,
-        "groupID": 1,
-        "role": "groupAssis"
-    }
-]
+[{"userID":1,"groupID":0,"role":"member"},{"userID":1,"groupID":1,"role":"groupAssis"},{"userID":"2","groupID":"0","role":"member"}]

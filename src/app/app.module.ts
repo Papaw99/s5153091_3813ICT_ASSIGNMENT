@@ -16,6 +16,7 @@ import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { ChannelsComponent } from './channels/channels.component';
 import { CreateChannelComponent } from './create-channel/create-channel.component';
+import { AddToGroupComponent } from './add-to-group/add-to-group.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { CreateChannelComponent } from './create-channel/create-channel.componen
     DeleteUserComponent,
     CreateGroupComponent,
     ChannelsComponent,
-    CreateChannelComponent
+    CreateChannelComponent,
+    AddToGroupComponent
   ],
   imports: [
     BrowserModule,

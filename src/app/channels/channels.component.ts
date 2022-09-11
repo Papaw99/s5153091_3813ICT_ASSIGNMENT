@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class ChannelsComponent implements OnInit {
 
   groupID: any
+  groupName: any
   channel = ""
   channels: Array<{channelID: number, groupID: number, channelName: string}> = []
   channelsMemberships: Array<{userID: number, channelID: number}> = []
@@ -23,7 +24,8 @@ export class ChannelsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params=>
-      {this.groupID = params.get('groupID')}
+      {this.groupID = params.get('groupID'),
+      this.groupName = params.get('groupName')},
     )
 
     this.http.get('http://localhost:3000/api/getChannels').subscribe(res =>{
