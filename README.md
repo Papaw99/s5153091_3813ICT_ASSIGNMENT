@@ -1,6 +1,9 @@
-# S51530913813ICTASSIGNMENT
+# 3813ICT Assignment Phase 1 - s5153091 - Muhammad Usama Siddiqui
 
-This 
+## Introduction
+
+This assignment was focused on building a web-based chat application. This program was built using Angular for the front-end and made use of Express.js for the server-side communications. The data is being stored in JSON files
+for the time being, however, by the second phase of this assignment, the app data will be stored on a mongoDB database.
 
 ## Development server
 
