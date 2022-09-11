@@ -6,5 +6,9 @@
     {
         "userID": 1,
         "channelID": 1
+    },
+    {
+        "userID": 2,
+        "channelID": 4
     }
 ]

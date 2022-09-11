@@ -14,7 +14,7 @@ import { AddToGroupComponent } from './add-to-group/add-to-group.component';
 
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
+  {path: '', component: LoginComponent},
   {path: 'account-management', component: AccountManagementComponent},
   {path: 'groups', component: GroupsComponent},
   {path: 'create-user', component: CreateUserComponent},
