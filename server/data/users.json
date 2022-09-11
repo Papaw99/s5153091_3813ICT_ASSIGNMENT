@@ -1,3 +1,3 @@
-[{"userName":"Super","email":"super@gmail.com","userID":0,"role":"superAdmin","passWord":"06092022","valid":false},
+[{"userName":"Super","email":"super@gmail.com","userID":0,"role":"superAdmin","password":"06092022","valid":false},
 {"userName":"Usama","email":"usama.siddiqui5@gmail.com","userID":1,"role":"groupAdmin","password":"02111999","valid":false},
 {"userName":"TestAccount","email":"test@gmail.com","userID":2,"role":"user","password":"Usami123","valid":false}]

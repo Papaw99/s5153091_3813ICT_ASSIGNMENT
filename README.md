@@ -15,6 +15,34 @@ to save on memory.
 
 ## REST API
 
+### auth
+
+### createUser
+
+### getUsers
+
+### getGroups
+
+### getGroupMemberships
+
+### changeRole
+
+### deleteUser
+
+### deleteGroup
+
+### createGroup
+
+### getChannels
+
+### getChannelMemberships
+
+### deleteChannel
+
+### createChnnel
+
+### addToGroup
+
 ## Angular Architecture
 
 
