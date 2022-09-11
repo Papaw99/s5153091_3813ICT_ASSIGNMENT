@@ -19,6 +19,7 @@ export class ChannelsComponent implements OnInit {
   groupChannels: Array<{channelID: number, groupID: number, channelName: string}> = []
   userRole = localStorage.getItem("role")
   userID = localStorage.getItem("userID") as unknown as number
+  isAdmin = false
 
   constructor(private route: ActivatedRoute, private http: HttpClient) { }
 
@@ -69,6 +70,10 @@ export class ChannelsComponent implements OnInit {
       }
 
     })
+
+    if (this.userRole == "superAdmin" || this.userRole == "groupAdmmin"){
+      this.isAdmin = true
+    }
     
   }
 

@@ -1,7 +1,7 @@
 <br>
 <br>
 <h1>Welcome to the group!</h1><br>
-<button [routerLink]="['/create-channel', groupID]"type="button" class="btn btn-success">Create A Channel</button><br><br><br>
+<button *ngIf="isAdmin" [routerLink]="['/create-channel', groupID]"type="button" class="btn btn-success">Create A Channel</button><br><br><br>
 <form>
     <div class="row mb-3">
         <label class="col-sm 2 col-form-label">Channels</label><br><br>
@@ -11,6 +11,6 @@
             </select>
         </div>
     </div><br><br>
-    <button (click)="deleteChannel()" type="button" class="btn btn-danger">Delete Channel</button><br><br>
+    <button *ngIf="isAdmin" (click)="deleteChannel()" type="button" class="btn btn-danger">Delete Channel</button><br><br>
     <button [routerLink]="['/channel', channel]"  type="button" class="btn btn-primary">Go!</button><br><br>
 </form>

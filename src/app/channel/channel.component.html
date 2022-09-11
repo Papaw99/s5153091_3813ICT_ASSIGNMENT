@@ -1,1 +1,1 @@
-<h1>Welcome to the channel!</h1> <button [routerLink]="['/add-to-channel', channelID]" type="button" class="btn btn-warning">Add to Channel</button><br><br>
+<h1>Welcome to the channel!</h1> <button *ngIf="isAdmin" [routerLink]="['/add-to-channel', channelID]" type="button" class="btn btn-warning">Add to Channel</button><br><br>

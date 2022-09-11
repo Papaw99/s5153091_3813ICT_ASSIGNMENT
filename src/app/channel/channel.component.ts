@@ -12,12 +12,18 @@ export class ChannelComponent implements OnInit {
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
   channelID: any
+  userRole = localStorage.getItem('role')
+  isAdmin = false
 
   ngOnInit(): void {
 
     this.route.paramMap.subscribe(params => {
       this.channelID = params.get('channelID')
     })
+
+    if (this.userRole == "superAdmin" || this.userRole == "groupAdmmin"){
+      this.isAdmin = true
+    }
 
   }
 

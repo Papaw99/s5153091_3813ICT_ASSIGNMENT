@@ -14,6 +14,7 @@ export class GroupsComponent implements OnInit {
   userRole = localStorage.getItem("role")
   userID = localStorage.getItem("userID") as unknown as number
   usersGroups: Array<{groupName: string, groupID: number}> = []
+  isAdmin = false
 
   constructor(private http: HttpClient) { }
 
@@ -52,6 +53,10 @@ export class GroupsComponent implements OnInit {
         }
       }
     }) 
+
+    if (this.userRole == "superAdmin" || this.userRole == "groupAdmmin"){
+      this.isAdmin = true
+    }
   }
 
   deleteGroup(){
