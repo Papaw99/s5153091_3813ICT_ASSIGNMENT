@@ -11,6 +11,8 @@ import { CreateGroupComponent } from './create-group/create-group.component';
 import { ChannelsComponent } from './channels/channels.component';
 import { CreateChannelComponent } from './create-channel/create-channel.component';
 import { AddToGroupComponent } from './add-to-group/add-to-group.component';
+import { AddToChannelComponent } from './add-to-channel/add-to-channel.component';
+import { ChannelComponent } from './channel/channel.component';
 
 
 const routes: Routes = [
@@ -23,7 +25,9 @@ const routes: Routes = [
   {path: 'create-group', component: CreateGroupComponent},
   {path: 'channels/:groupID', component: ChannelsComponent},
   {path: 'create-channel/:groupID', component: CreateChannelComponent},
-  {path: 'add-to-group/:groupID', component: AddToGroupComponent}
+  {path: 'add-to-group/:groupID', component: AddToGroupComponent},
+  {path: 'add-to-channel/:channelID', component: AddToChannelComponent},
+  {path: 'channel/:channelID', component: ChannelComponent}
 ]
 
 

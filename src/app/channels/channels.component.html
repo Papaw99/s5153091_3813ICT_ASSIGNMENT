@@ -1,6 +1,6 @@
 <br>
 <br>
-<h1>Welcome to {{groupName}}</h1><br>
+<h1>Welcome to the group!</h1><br>
 <button [routerLink]="['/create-channel', groupID]"type="button" class="btn btn-success">Create A Channel</button><br><br><br>
 <form>
     <div class="row mb-3">
@@ -11,7 +11,6 @@
             </select>
         </div>
     </div><br><br>
-    <button type="button" class="btn btn-warning">Add to Channel</button><br><br>
     <button (click)="deleteChannel()" type="button" class="btn btn-danger">Delete Channel</button><br><br>
-    <button type="button" class="btn btn-primary">Go!</button><br><br>
+    <button [routerLink]="['/channel', channel]"  type="button" class="btn btn-primary">Go!</button><br><br>
 </form>

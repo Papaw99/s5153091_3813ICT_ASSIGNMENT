@@ -17,6 +17,8 @@ import { CreateGroupComponent } from './create-group/create-group.component';
 import { ChannelsComponent } from './channels/channels.component';
 import { CreateChannelComponent } from './create-channel/create-channel.component';
 import { AddToGroupComponent } from './add-to-group/add-to-group.component';
+import { AddToChannelComponent } from './add-to-channel/add-to-channel.component';
+import { ChannelComponent } from './channel/channel.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { AddToGroupComponent } from './add-to-group/add-to-group.component';
     CreateGroupComponent,
     ChannelsComponent,
     CreateChannelComponent,
-    AddToGroupComponent
+    AddToGroupComponent,
+    AddToChannelComponent,
+    ChannelComponent
   ],
   imports: [
     BrowserModule,
