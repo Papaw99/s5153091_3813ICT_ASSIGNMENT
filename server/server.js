@@ -36,13 +36,11 @@ app.post('/api/auth', function(req, res){
 
     for (let i=0; i < users.length; i++){
         if(req.body.userName != users[i].userName || req.body.password != users[i].password){
-            console.log(req.body)
             result = {"valid": false}
           continue; 
         }
         else {
             users[i].valid = true
-            console.log(users[i])
             result = users[i]
             break;
         }
@@ -57,7 +55,6 @@ app.post('/api/createUser', function(req, res){
     users.push(newUser)
     let newUserArray = JSON.stringify(users)
     fs.writeFileSync("./data/users.json", newUserArray)
-    console.log(users)
 })
 
 app.listen(3000, '127.0.0.1', function(){
@@ -86,7 +83,6 @@ app.post('/api/changeRole', function(req, res){
     for (let i=0; i < users.length; i++){
         if(req.body.userName == users[i].userName){
           users[i].role = req.body.role
-          console.log(users[i])
           let newUserArray = JSON.stringify(users)
           fs.writeFileSync("./data/users.json", newUserArray)
         }
@@ -142,7 +138,6 @@ app.post('/api/createGroup', function(req, res){
     groups.push(newGroup)
     let newGroupsArray = JSON.stringify(groups)
     fs.writeFileSync("./data/groups.json", newGroupsArray)
-    console.log(groups)
 })
 
 app.get('/api/getChannels', function(req, res){
@@ -178,7 +173,6 @@ app.post('/api/createChannel', function(req, res){
     channels.push(newChannel)
     let newChannelsArray = JSON.stringify(channels)
     fs.writeFileSync("./data/channels.json", newChannelsArray)
-    console.log(channels)
 })
 
 app.post('/api/addToGroup', function(req, res){
@@ -186,7 +180,6 @@ app.post('/api/addToGroup', function(req, res){
     groupMemberships.push(newGroupMemberships)
     let newGroupMembershipsArray = JSON.stringify(groupMemberships)
     fs.writeFileSync("./data/groupMemberships.json", newGroupMembershipsArray)
-    console.log(groupMemberships)
 })
 
 app.post('/api/addToChannel', function(req, res){
@@ -194,5 +187,4 @@ app.post('/api/addToChannel', function(req, res){
     channelMemberships.push(newChannelMemberships)
     let newChannelMembershipsArray = JSON.stringify(channelMemberships)
     fs.writeFileSync("./data/channelMemberships.json", newChannelMembershipsArray)
-    console.log(channelMemberships)
 })
