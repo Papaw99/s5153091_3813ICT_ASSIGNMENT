@@ -21,7 +21,7 @@ export class ChannelComponent implements OnInit {
       this.channelID = params.get('channelID')
     })
 
-    if (this.userRole == "superAdmin" || this.userRole == "groupAdmmin"){
+    if (this.userRole == "superAdmin" || this.userRole == "groupAdmin"){
       this.isAdmin = true
     }
 

@@ -71,7 +71,7 @@ export class ChannelsComponent implements OnInit {
 
     })
 
-    if (this.userRole == "superAdmin" || this.userRole == "groupAdmmin"){
+    if (this.userRole == "superAdmin" || this.userRole == "groupAdmin"){
       this.isAdmin = true
     }
     
