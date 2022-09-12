@@ -63,33 +63,67 @@ The userID stores the userID of the user whereas the channelID stores the channe
 
 ## REST API
 
+The application makes use of 12 15 REST API's to fetch data from the JSON data files. The server makes use of fileSync to fetch and write data from and to the JSON files. The server also makes use of a JSON parser to convert the raw FS data into readable JSON.
+
 ### auth
+
+The auth API makes use of the post method and is used for user authentication. The auth API takes in the userName and password. The api then takes the body of data from the application and runs it through a for loop of and compares the input userName and passWord with the users on the server. If the user is matched, it sends back the user data with the valid field set as true. Otherwise, if no data is found that matches the credentials, it sends a valid state of false.
 
 ### createUser
 
+The createUser API makes use of the post method to create a user. The method takes in a body of data that follows the data structure of a user. The user data is then pushed into the array of users. The user array is then converted into rawdata using the JSON.stringify method and then it is written into the users JSON file.
+
 ### getUsers
+
+The getUsers API makes use of the get method to send an aray of users to the requester.
 
 ### getGroups
 
+The getGroups API makes use of the get method to send an array of groups to the requester.
+
 ### getGroupMemberships
+
+The getGroupMemberships API makes use of the get method to send an array of groupMemberships to the requester.
 
 ### changeRole
 
+The changeRole API makes use of the post method. It takes in a userName and the new role. A for loop is then used to loop through the list of users and compares it the userNames in the list with the input userName. Once the right userName is found, it changes the roles in the array and the writes the new list of users to the users JSON file.
+
 ### deleteUser
+
+The deleteUser API makes use of the post method. It takes in a userName. A for loop is used to loop through the list of users and compares it with the userNames in the list with the input userName. Once the right user is found, the splice function is used to remove the user and a new array is written into the users JSON file.
 
 ### deleteGroup
 
+The deleteGroup api makes use of the post method. It takes in a groupID and then runs it through a for loop of groups. It compares the input groupID with the list of groupIDs and once it finds the right one, it uses the splce function to delete the group and re-writes the new group of arrays nto the groups JSON file.
+
 ### createGroup
+
+The createGroup API uses the post method. It takes in a groupName. The method then assigns a groupID based on the array length of groups. The group is then added to the array of groups using the push function. The new array is then written into the groups JSON file.
 
 ### getChannels
 
+The getChannels API makes use of the get method to send an array of channels to the requester.
+
 ### getChannelMemberships
+
+The getChannelMemberships API makes use of the get method to send an arrray of channelMemberships to the requester.
 
 ### deleteChannel
 
+The deleteChannel API makes use of the post method. It takes in a channelID and runs a for loop with the length of channels array. The for loop compares the input channelID with the channelIDs in the array and once the right channel is found, the splice function is used to delete the channel. The new array is then written into the channels JSON file.
+
 ### createChnnel
 
+The createChannel API makes use of the post method. It takes in a groupID and a channelName. The unique channelID is assigned using the array length of channels. The push function is used to add the new channel into the channels array and then the new array is written into the channels JSON file.
+
 ### addToGroup
+
+The addToGroup API makes use of the post method. It takes in a useID a groupID and by default, it assigns the user a role of member. The new group membership is then added to the groupMemberships array and the array is written into the groupMemberships JSON file.
+
+### addToChannel
+
+The addToCHannel API makes use of the post method. It takes in a userID and channelID. The new channel membership is written into the channelMemberships array using the push function. The array is then written into the channelMemberships JSON file.
 
 ## Angular Architecture
 
