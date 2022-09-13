@@ -5,6 +5,12 @@
 This assignment was focused on building a web-based chat application. This program was built using Angular for the front-end and made use of Express.js for the server-side communications. The data is being stored in JSON files
 for the time being, however, by the second phase of this assignment, the app data will be stored on a mongoDB database.
 
+## How to Run The Application
+
+When in the main directory, run the command "ng serve" in the terminal to boot up the Angular application in a dev environment. Then CD to the server file and run the server using "noder server.js."
+
+Alternatively, since the Angular app has already been built and linked to the server, you may only just run the server to start the application.
+
 ## Git Use
 
 This app was built using the help of Git as a means for version control. Each time a new function was implemented on both the Angular application and the server-side functionality, a commit was made to highlight those changes.
@@ -126,5 +132,130 @@ The addToGroup API makes use of the post method. It takes in a useID a groupID a
 The addToCHannel API makes use of the post method. It takes in a userID and channelID. The new channel membership is written into the channelMemberships array using the push function. The array is then written into the channelMemberships JSON file.
 
 ## Angular Architecture
+
+## Routes
+
+The app has 12 routes within it. The default route leads to the login page.
+
+account-management: Leads to the AccountManagement component, available to superAdmin to edit and create accounts.
+
+groups: Leads to the GroupComponent, list of users groups.
+
+create-user: CreateUserComponent, this component allows a superAdmin to create a user.
+
+edit-perms: Leads to the EditPermsComponent, allows a superAdmin to edit the perms of a user.
+
+delete-user: Leads to the DeleteUser component, allows a superAdmin to delete a user.
+
+create-group: Leads to the CreateGroupComponent, allows admins to create a grou
+channels/:groupID: Leads the the channels component, takes the user to the list of channels within a particular group.
+
+create-channel: Leads to the CreateChannelComponent, allows an admin to create a channel within a certain group.
+
+add-to-group/:groupID: Leads to the addToGroup component, allows an admin to add a user to a particular group
+
+add-to-channel/:channelID: Leads to AddToChannelComponent, allows an admin to add a user to a particualr channel.
+
+channel/:channelID: leads to a particular channel
+
+### app
+
+The app module contains the basic layout of the overall website. It contains the navbar with a few ngIf statements that control the display of the logout button and the account management button. These display controls are done using functions in the component file. the ngDoCheck function is called everytime a change is made to the website and if it detects that the role in the local storage is superAdmin, it displays the account management option in the navbar.
+
+The logout function is triggered when the logout button is clicked. It clears the local storage and takes the user back to the login page, completely logging out the user.
+
+### account-management
+
+The account management does not have any functions in it. It has an HTML component that displays all the account management options. These options make use of bootstrap buttons and routerlinks that redirect the superAdmin user to the appropriate page allocated to the option.
+
+### add-to-channel
+
+The add-to-channel component is used to add users to channels. This comppnent makes use of HttpClient and ActivatedRoute. ActivatedRoute is used to capture the channelID from the url and it stores it in a variable called channelID. The HttpClient is used to communicate with the server.
+
+When the component is initialised, a request is made to the server to get a list of users. The list of users is then stored in an array with only the userName and userIDs. The users array is used to produce a list of users that is displayed for the user to chose from
+
+Once the user chooses a user to add to the channel, they click a button which triggers the addToChannel function. This function sends a body of data with the userID and channelID. A post request is then sent to the server with the body of data.
+
+### add-to-group
+
+The add-to-group makes use of the HttpClient module and the ActivatedRoute module. When the component is first initialized, a function is triggered using thee HttpClient module that sends out a get request to get a list of users. The users are then added to a users array with the userName and userID.
+
+The addToGroup function is called when the the user clicks on the button. This function creates a bodyData with the userId and the groupId. The groupId comes from the ActivatedRoute module that picks up the groupID from the url. A post function is then called using the HttpClient module which sends the body data to the server.
+
+### channel
+
+The channel component makes use of the HttpClient module and the ActivatedRoute module. When the component is first initialized, it takes in the channelID from the url using the ActivatedRoute module and stores it the channelID variable. The userRole is collected from the localStorage and an if statement is called to see if the role is an admin role. If it is an admin role, the isAdmin boolean variable is changed to true which would display the "add to channel button."
+
+### channels
+
+The channels component is used to display the channels within a group. The channel component makes use of the ActivatedRoute module and the HttpClient module. When the component is first initialised, the ActivatedRoute module is called to get the groupID that is within the url.
+
+Then, an HttpClient get function is called that asks the server to get a list of channels. The list of channels is then run through a for loop and put into a variable title response.
+
+The response variable is then put through another for loop and it compares the groupIDs of every channel with the components stored groupID, and if the channel in the array matches the groupID, the channel is pushed into an array titled groupChannels.
+
+A second HttpClient get function is called to get all the channelMemberships. The channelMemberships is then stored. 
+
+An if statement then checks if the user that is logged in is an admin. If that is the case, then all the channels are pushed to an array titled usersChannels which is a list of channels that user has access too.
+
+If the admin is not a user, a series of for loops are called to check the channelMemberships of the user and if the user is a member of the channel, it is pushed to the userChannels array.
+
+Lastly, an if statement is triggered to check if the user is an admin or not. If the user is an admin, the isAdmin boolean value is changed to true which would allow access to the "Create a Channel" and "Delete channel" button.
+
+### create-channel
+
+The create-channel componentr is used to create a new channel within a group. The coomponent makes use of the HttpClient module and the ActivatedRoute module.
+
+When the component is first intialised, the ActivateRoute module is used to get the groupID in which the channel is being created from the url.
+
+When the user enters the channel name and hits the create channel button, the createChannel function is called. The function creates a body of data with a groupID and the channelName from the input. An HttpClient post function is called which sends the bodyData to the server where the channel is created.
+
+### create-group
+
+The create-group component makes use of the HttpClient module.
+
+The createGroup function is called when the user clicks the Creat Group button. The creatGroup function takes in the user input of the group name and puts in a body data. The HttpClient post function is called to send the body data to the server that creates the group.
+
+### create-user
+
+The create=user component makes use of the HttpClient module.
+
+The createUser function is called when the Create User button is pressed. Once the button is pressed, the user inputs are read and it is added to the bodyData variable.
+
+Then the HttpClient post function is called which sends the bodyData to the server where the user is created.
+
+### delete-user
+
+The delete-user componet makes use of the HttpClient module. This component is used to delete a user from the chat service.
+
+When the component is initialised, the HttpClient get function is called to get a list of users. The list of users is then stored in an array with onlt the userNames and roles being stored in the array.
+
+The deleteUser function is triggered after a user selects a username they'd like to delete. The function then creates a bodyData that is used by a HttpClient post function. The functions sends the data over to a server function that deletes the user.
+
+### edit-perms
+
+The edit-perms component makes use of the HttpClient module. This module allows a superAdmin to edit the admin permissions of a user.
+
+When the component is first intialised, an HttpClient get function is called to get a list of users from the server. The list is then run through a for loop which adds it to a list of users.
+
+The changeRole function is called when the user selects a user and the desired role. The function creates a body data from the userName and role. An HttpClient post function is then used to send the bodyData to the server where the role is changed.
+
+### groups
+
+The groups component is used to display the groups that a user is a part of. It makes use of the HttpClient module.
+
+When the component is initialised, an HttpClient get function is called to get a list of groups that is stored in a groups array.
+
+A secon HttpClient get function is called to get a list of group memberships which is then run through another for loops which adds the list to a groupMemberships array.
+
+An if statement then checks if the user is an admin, and if that is the case, all the groups are added to the usersGroups array which is an array of groups that the user has access to. If the user is not an admin, as eries of for loops are triggered to compare and get the list of groups a user is a member of.
+
+The deleteGroup function is called when a group is selected and the user hits the Delete Group button. The function creates a bodyData with the groupID. The ID is then sent to the server using a post request which deletes the group from the server.
+
+### login
+
+The login function makes use of the HttpClient module and Router module.
+
+The checkCredntials function is called when a user enters their credentials and clicks the login button. The userName and password is then stored in bodyData which is then sent to ther server as a post request. The response is then checked to see if the user account credentials are correct. If they are, all user account details would've been sent to the angular app which would be stored on the localStorage. The router module would then be called to navigate to the groups section.
 
 

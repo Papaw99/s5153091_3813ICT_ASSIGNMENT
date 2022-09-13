@@ -19,13 +19,11 @@ export class CreateChannelComponent implements OnInit {
     this.route.paramMap.subscribe(params=>
       {this.groupID = params.get('groupID')}
     )
-    console.log(this.groupID)
 
   }
 
   createChannel(){
     let bodyData = {"groupID":this.groupID, "channelName": this.channelName}
-    console.log(bodyData)
   
     this.http.post('http://localhost:3000/api/createChannel', bodyData).subscribe(res =>{
     })

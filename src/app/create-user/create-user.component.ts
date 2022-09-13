@@ -22,7 +22,6 @@ export class CreateUserComponent implements OnInit {
     let bodyData = {"userName": this.userName, "email": this.email, "password": this.password, "role": this.role}
 
     this.http.post('http://localhost:3000/api/createUser', bodyData).subscribe(res =>{
-      console.log("executed")
     })
   }
 

@@ -26,7 +26,6 @@ export class AddToGroupComponent implements OnInit {
       for (let i = 0; i < response.length; i++){
         this.users.push(response[i])
       }
-      console.log(this.users[0])
     })
 
   }
@@ -35,7 +34,6 @@ export class AddToGroupComponent implements OnInit {
     let bodyData = {"userID": this.user, "groupID": this.groupID}
 
     this.http.post('http://localhost:3000/api/addToGroup', bodyData).subscribe(res =>{
-      console.log("executed")
     })
   }
 

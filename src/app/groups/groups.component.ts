@@ -25,7 +25,6 @@ export class GroupsComponent implements OnInit {
       for (let i = 0; i < response.length; i++){
         this.groups.push(response[i])
       }
-      console.log(this.groups)
     })
 
     this.http.get('http://localhost:3000/api/getGroupMemberships').subscribe(res =>{

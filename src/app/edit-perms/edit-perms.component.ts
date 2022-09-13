@@ -21,7 +21,6 @@ export class EditPermsComponent implements OnInit {
       for (let i = 0; i < response.length; i++){
         this.users.push(response[i])
       }
-      console.log(this.users[0])
     })
 
   }
@@ -29,7 +28,6 @@ export class EditPermsComponent implements OnInit {
   changeRole(){
     let bodyData = {"userName": this.userName, "role": this.role}
     this.http.post('http://localhost:3000/api/changeRole', bodyData).subscribe(res=>{
-      console.log("Done")
     })
   }
 

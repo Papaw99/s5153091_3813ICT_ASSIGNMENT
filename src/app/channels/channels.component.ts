@@ -25,8 +25,7 @@ export class ChannelsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params=>
-      {this.groupID = params.get('groupID'),
-      this.groupName = params.get('groupName')},
+      {this.groupID = params.get('groupID')}
     )
 
     this.http.get('http://localhost:3000/api/getChannels').subscribe(res =>{
@@ -41,7 +40,6 @@ export class ChannelsComponent implements OnInit {
           continue
         }
       }
-      console.log(this.groupChannels)
     })
 
     this.http.get('http://localhost:3000/api/getChannelMemberships').subscribe(res =>{

@@ -26,7 +26,6 @@ export class AddToChannelComponent implements OnInit {
       for (let i = 0; i < response.length; i++){
         this.users.push(response[i])
       }
-      console.log(this.users[0])
     })
 
   }
