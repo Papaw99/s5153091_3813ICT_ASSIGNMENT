@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("userName",response.userName)
         localStorage.setItem("email",response.email)
         localStorage.setItem("role", response.role)
-        localStorage.setItem("valid",response.valid)
+        localStorage.setItem("valid", "true")
         this.router.navigateByUrl('/groups')
       }
       else {

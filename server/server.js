@@ -3,6 +3,10 @@ const app = express()
 const fs = require('fs')
 var bodyParser = require('body-parser')
 var cors = require('cors')
+const MongoClient = require('mongodb').MongoClient
+var dbUrl = "mongodb://localhost:27017/"
+var client = new MongoClient(dbUrl)
+var database = client.db("chat_db")
 
 app.use(bodyParser.json())
 app.use(cors())
@@ -18,12 +22,18 @@ let channelsRawData = fs.readFileSync("./data/channels.json")
 let groupMembershipsRawData = fs.readFileSync("./data/groupMemberships.json")
 let channelMembershipsRawData = fs.readFileSync("./data/channelMemberships.json")
 
-let users = JSON.parse(usersRawData)
-let groups = JSON.parse(groupsRawData)
+let usersJ = JSON.parse(usersRawData)
+let groupsJ = JSON.parse(groupsRawData)
 let channels = JSON.parse(channelsRawData)
 let groupMemberships = JSON.parse(groupMembershipsRawData)
 let channelMemberships = JSON.parse(channelMembershipsRawData)
 
+let users = database.collection("users")
+
+
+app.listen(3000, '127.0.0.1', function(){
+    console.log('server has been started')
+})
 
 app.post('/api/auth', function(req, res){
 
@@ -34,14 +44,14 @@ app.post('/api/auth', function(req, res){
         return res.sendStatus(400)
     }
 
-    for (let i=0; i < users.length; i++){
-        if(req.body.userName != users[i].userName || req.body.password != users[i].password){
+    for (let i=0; i < usersJ.length; i++){
+        if(req.body.userName != usersJ[i].userName || req.body.password != usersJ[i].password){
             result = {"valid": false}
           continue; 
         }
         else {
-            users[i].valid = true
-            result = users[i]
+            usersJ[i].valid = true
+            result = usersJ[i]
             break;
         }
     }
@@ -57,12 +67,12 @@ app.post('/api/createUser', function(req, res){
     fs.writeFileSync("./data/users.json", newUserArray)
 })
 
-app.listen(3000, '127.0.0.1', function(){
-    console.log('server has been started')
-})
-
 app.get('/api/getUsers', function(req, res){
-    res.send(users)
+    users.find({}).toArray(
+        function(err, result){
+            res.send(result)
+        }
+    )
 })
 
 app.get('/api/getGroups', function(req, res){
