@@ -25,11 +25,12 @@ let channelMembershipsRawData = fs.readFileSync("./data/channelMemberships.json"
 let usersJ = JSON.parse(usersRawData)
 let groupsJ = JSON.parse(groupsRawData)
 let channels = JSON.parse(channelsRawData)
-let groupMemberships = JSON.parse(groupMembershipsRawData)
+let groupMembershipsJ = JSON.parse(groupMembershipsRawData)
 let channelMemberships = JSON.parse(channelMembershipsRawData)
 
 let users = database.collection("users")
 let groups = database.collection("groups")
+let groupMemberships = database.collection("groupMemberships")
 
 
 app.listen(3000, '127.0.0.1', function(){
@@ -85,7 +86,11 @@ app.get('/api/getGroups', function(req, res){
 })
 
 app.get('/api/getGroupMemberships', function(req, res){
-    res.send(groupMemberships)
+    groupMemberships.find({}).toArray(
+        function(err, result){
+            res.send(result)
+        }
+    )
 })
 
 app.post('/api/changeRole', function(req, res){
