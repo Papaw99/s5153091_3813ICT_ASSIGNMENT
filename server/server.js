@@ -26,12 +26,13 @@ let usersJ = JSON.parse(usersRawData)
 let groupsJ = JSON.parse(groupsRawData)
 let channelsJ = JSON.parse(channelsRawData)
 let groupMembershipsJ = JSON.parse(groupMembershipsRawData)
-let channelMemberships = JSON.parse(channelMembershipsRawData)
+let channelMembershipsJ = JSON.parse(channelMembershipsRawData)
 
 let users = database.collection("users")
 let groups = database.collection("groups")
 let groupMemberships = database.collection("groupMemberships")
 let channels = database.collection("channels")
+let channelMemberships = database.collection("channelMemberships")
 
 
 app.listen(3000, '127.0.0.1', function(){
@@ -170,7 +171,11 @@ app.get('/api/getChannels', function(req, res){
 })
 
 app.get('/api/getChannelMemberships', function(req, res){
-    res.send(channelMemberships)
+    channelMemberships.find({}).toArray(
+        function(err, result){
+            res.send(result)
+        }
+    )
 })
 
 app.post('/api/deleteChannel', function(req, res){
