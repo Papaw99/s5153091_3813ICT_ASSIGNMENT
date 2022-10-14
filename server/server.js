@@ -29,6 +29,7 @@ let groupMemberships = JSON.parse(groupMembershipsRawData)
 let channelMemberships = JSON.parse(channelMembershipsRawData)
 
 let users = database.collection("users")
+let groups = database.collection("groups")
 
 
 app.listen(3000, '127.0.0.1', function(){
@@ -76,7 +77,11 @@ app.get('/api/getUsers', function(req, res){
 })
 
 app.get('/api/getGroups', function(req, res){
-    res.send(groups)
+    groups.find({}).toArray(
+        function(err, result){
+            res.send(result)
+        }
+    )
 })
 
 app.get('/api/getGroupMemberships', function(req, res){
