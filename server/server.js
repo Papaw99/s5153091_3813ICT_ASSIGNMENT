@@ -144,16 +144,7 @@ app.post('/api/deleteGroup', function(req, res){
         return res.sendStatus(400)
     }
 
-    for (let i=0; i < groups.length; i++){
-        if(req.body.groupID == groups[i].groupID){
-          groups.splice(i, 1)
-          let newGroupsArray = JSON.stringify(groups)
-          fs.writeFileSync("./data/groups.json", newGroupsArray)
-        }
-        else{
-            continue
-        }
-    }
+    groups.deleteOne({groupID: parseInt(req.body.groupID)})
 
 })
 
