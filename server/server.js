@@ -86,6 +86,7 @@ app.post('/api/createUser', function(req, res){
         userID = value
         newUser = {"userName": req.body.userName, "email": req.body.email, "userID": userID, "role": req.body.role, "password": req.body.password, "valid": false}
         users.insertOne(newUser)
+        usersLength = users.countDocuments()
     })
 })
 
