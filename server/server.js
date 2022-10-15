@@ -29,6 +29,7 @@ let groupMembershipsJ = JSON.parse(groupMembershipsRawData)
 let channelMembershipsJ = JSON.parse(channelMembershipsRawData)
 
 let users = database.collection("users")
+let usersLength = users.countDocuments()
 let groups = database.collection("groups")
 let groupMemberships = database.collection("groupMemberships")
 let channels = database.collection("channels")
@@ -41,7 +42,7 @@ app.listen(3000, '127.0.0.1', function(){
 
 app.post('/api/auth', function(req, res){
 
-    result = ""
+    var userResult = ""
     
     if(!req.body){
         console.log('Request data invalid')
@@ -60,15 +61,32 @@ app.post('/api/auth', function(req, res){
         }
     }
 
+   /*  users.find({userName: req.body.userName}).toArray(
+        function(err, result){
+            if(result.password != req.body.password){
+                console.log(result.password)
+                userResult = {"valid": false}
+                res.send(result)
+            }
+            else {
+                console.log(result)
+                res.send(result)
+            }
+        }
+    ) */
+
     res.send(result)
 
 })
 
 app.post('/api/createUser', function(req, res){
-    let newUser = {"userName": req.body.userName, "email": req.body.email, "userID": users.length, "role": req.body.role, "password": req.body.password, "valid": false}
-    users.push(newUser)
-    let newUserArray = JSON.stringify(users)
-    fs.writeFileSync("./data/users.json", newUserArray)
+    var userID
+    let newUser
+    usersLength.then(value=>{
+        userID = value
+        newUser = {"userName": req.body.userName, "email": req.body.email, "userID": userID, "role": req.body.role, "password": req.body.password, "valid": false}
+        users.insertOne(newUser)
+    })
 })
 
 app.get('/api/getUsers', function(req, res){
