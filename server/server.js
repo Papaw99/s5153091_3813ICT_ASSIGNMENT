@@ -184,17 +184,7 @@ app.post('/api/deleteChannel', function(req, res){
         return res.sendStatus(400)
     }
 
-    for (let i=0; i < channels.length; i++){
-        if(req.body.channelID == channels[i].channelID){
-          channels.splice(i, 1)
-          let newChannelsArray = JSON.stringify(channels)
-          fs.writeFileSync("./data/channels.json", newChannelsArray)
-        }
-        else{
-            continue
-        }
-    }
-
+    channels.deleteOne({channelID: parseInt(req.body.channelID)})
 })
 
 app.post('/api/createChannel', function(req, res){
