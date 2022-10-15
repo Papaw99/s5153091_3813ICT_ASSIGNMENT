@@ -141,16 +141,7 @@ app.post('/api/deleteUser', function(req, res){
         return res.sendStatus(400)
     }
 
-    for (let i=0; i < users.length; i++){
-        if(req.body.userName == users[i].userName){
-          users.splice(i, 1)
-          let newUserArray = JSON.stringify(users)
-          fs.writeFileSync("./data/users.json", newUserArray)
-        }
-        else{
-            continue
-        }
-    }
+    users.deleteOne({userName: req.body.userName})
 
 })
 
