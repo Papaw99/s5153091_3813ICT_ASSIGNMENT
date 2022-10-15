@@ -14,6 +14,7 @@ export class ChannelComponent implements OnInit {
   channelID: any
   userRole = localStorage.getItem('role')
   isAdmin = false
+  message = ""
 
   ngOnInit(): void {
 

@@ -1,1 +1,17 @@
 <h1>Welcome to the channel!</h1> <button *ngIf="isAdmin" [routerLink]="['/add-to-channel', channelID]" type="button" class="btn btn-warning">Add to Channel</button><br><br>
+<ul style="list-style: none;">
+    <li>User: Test Message</li>
+    <li>User: Test Message</li>
+    <li>User: Test Message</li>
+    <li>User: Test Message</li>
+</ul>
+
+<form>
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+          <input [(ngModel)]="message" name="message" class="form-control" ><br>
+          <button type="button" class="btn btn-primary">Send</button>
+        </div>
+      </div>
+  </form>
