@@ -199,10 +199,8 @@ app.post('/api/createChannel', function(req, res){
 })
 
 app.post('/api/addToGroup', function(req, res){
-    let newGroupMemberships = {"userID": req.body.userID, "groupID": req.body.groupID, "role": "member"}
-    groupMemberships.push(newGroupMemberships)
-    let newGroupMembershipsArray = JSON.stringify(groupMemberships)
-    fs.writeFileSync("./data/groupMemberships.json", newGroupMembershipsArray)
+    let newGroupMemberships = {"userID":  parseInt(req.body.userID), "groupID": parseInt(req.body.groupID), "role": "member"}
+    groupMemberships.insertOne(newGroupMemberships)
 })
 
 app.post('/api/addToChannel', function(req, res){
