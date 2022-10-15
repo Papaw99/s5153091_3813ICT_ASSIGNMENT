@@ -31,6 +31,7 @@ let channelMembershipsJ = JSON.parse(channelMembershipsRawData)
 let users = database.collection("users")
 let usersLength = users.countDocuments()
 let groups = database.collection("groups")
+let groupsLength = groups.countDocuments()
 let groupMemberships = database.collection("groupMemberships")
 let channels = database.collection("channels")
 let channelMemberships = database.collection("channelMemberships")
@@ -157,10 +158,15 @@ app.post('/api/deleteGroup', function(req, res){
 })
 
 app.post('/api/createGroup', function(req, res){
-    let newGroup = {"groupID": groups.length, "groupName": req.body.groupName}
-    groups.push(newGroup)
-    let newGroupsArray = JSON.stringify(groups)
-    fs.writeFileSync("./data/groups.json", newGroupsArray)
+    
+    var groupID
+    let newGroup
+    groupsLength.then(value=>{
+        groupID = value
+        newGroup = {"groupID": groupID, "groupName": req.body.groupName}
+        groups.insertOne(newGroup)
+        groupsLength = groups.countDocuments()
+    })
 })
 
 app.get('/api/getChannels', function(req, res){
