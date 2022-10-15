@@ -34,6 +34,7 @@ let groups = database.collection("groups")
 let groupsLength = groups.countDocuments()
 let groupMemberships = database.collection("groupMemberships")
 let channels = database.collection("channels")
+let channelsLength = channels.countDocuments()
 let channelMemberships = database.collection("channelMemberships")
 
 
@@ -197,10 +198,14 @@ app.post('/api/deleteChannel', function(req, res){
 })
 
 app.post('/api/createChannel', function(req, res){
-    let newChannel = {"channelID": channels.length, "groupID": req.body.groupID, "channelName": req.body.channelName}
-    channels.push(newChannel)
-    let newChannelsArray = JSON.stringify(channels)
-    fs.writeFileSync("./data/channels.json", newChannelsArray)
+    var channelID
+    let newChannel
+    channelsLength.then(value=>{
+        channelID = value
+        newChannel = {"channelID": channelID, "groupID": parseInt(req.body.groupID), "channelName": req.body.channelName}
+        channels.insertOne(newChannel)
+        channelsLength = channels.countDocuments()
+    })
 })
 
 app.post('/api/addToGroup', function(req, res){
