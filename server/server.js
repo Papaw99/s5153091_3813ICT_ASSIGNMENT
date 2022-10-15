@@ -121,16 +121,7 @@ app.post('/api/changeRole', function(req, res){
         return res.sendStatus(400)
     }
 
-    for (let i=0; i < users.length; i++){
-        if(req.body.userName == users[i].userName){
-          users[i].role = req.body.role
-          let newUserArray = JSON.stringify(users)
-          fs.writeFileSync("./data/users.json", newUserArray)
-        }
-        else{
-            continue
-        }
-    }
+    users.updateOne({userName: req.body.userName}, { $set: {role: req.body.role } })
 
 })
 
