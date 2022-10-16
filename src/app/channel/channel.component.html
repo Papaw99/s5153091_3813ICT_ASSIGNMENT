@@ -1,9 +1,6 @@
 <h1>Welcome to the channel!</h1> <button *ngIf="isAdmin" [routerLink]="['/add-to-channel', channelID]" type="button" class="btn btn-warning">Add to Channel</button><br><br>
 <ul style="list-style: none;">
-    <li>User: Test Message</li>
-    <li>User: Test Message</li>
-    <li>User: Test Message</li>
-    <li>User: Test Message</li>
+    <li *ngFor="let message of messages"><b>{{message.userName}}:</b> {{message.message}}</li>
 </ul>
 
 <form>

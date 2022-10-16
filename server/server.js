@@ -218,7 +218,6 @@ io.on('connection', function(socket){
     
     socket.on("joinRoom", (userName, channelID) =>{
         socket.join(channelID.toString())
-        console.log(userName, "has joined channel", channelID)
     })
 
     socket.on("sendMessage", (username, message, channelID)=>{
