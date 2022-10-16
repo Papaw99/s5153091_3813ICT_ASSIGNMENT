@@ -2,6 +2,7 @@
 <ul style="list-style: none;">
     <li *ngFor="let message of messages"><b>{{message.userName}}:</b> {{message.message}}</li>
     <li *ngFor="let user of newUsers"><b>{{user.userName}} has joined the chat!</b></li>
+    <li *ngFor="let disconnectedUser of disconnectedUsers"><b>{{disconnectedUser.userName}} has joined the chat!</b></li>
 </ul>
 
 <form>

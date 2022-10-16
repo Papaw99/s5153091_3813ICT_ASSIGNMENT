@@ -22,19 +22,8 @@ const io = require('socket.io')(http, {
 
 app.use(express.static(path.join(__dirname, '../dist/s5153091-3813-ict-assignment')))
 
-let usersRawData = fs.readFileSync("./data/users.json")
-let groupsRawData = fs.readFileSync("./data/groups.json")
-let channelsRawData = fs.readFileSync("./data/channels.json")
-let groupMembershipsRawData = fs.readFileSync("./data/groupMemberships.json")
-let channelMembershipsRawData = fs.readFileSync("./data/channelMemberships.json")
-
-let usersJ = JSON.parse(usersRawData)
-let groupsJ = JSON.parse(groupsRawData)
-let channelsJ = JSON.parse(channelsRawData)
-let groupMembershipsJ = JSON.parse(groupMembershipsRawData)
-let channelMembershipsJ = JSON.parse(channelMembershipsRawData)
-
 let users = database.collection("users")
+let usersArray = users.find({}).toArray()
 let usersLength = users.countDocuments()
 let groups = database.collection("groups")
 let groupsLength = groups.countDocuments()
@@ -50,41 +39,27 @@ http.listen(3000, '127.0.0.1', function(){
 
 app.post('/api/auth', function(req, res){
 
-    var userResult = ""
+    var result = ""
     
     if(!req.body){
         console.log('Request data invalid')
         return res.sendStatus(400)
     }
-
-    for (let i=0; i < usersJ.length; i++){
-        if(req.body.userName != usersJ[i].userName || req.body.password != usersJ[i].password){
+    usersArray.then( value=> {
+        for (let i=0; i < value.length; i++){
+            if(req.body.userName != value[i].userName || req.body.password != value[i].password){
             result = {"valid": false}
-          continue; 
+            continue; 
         }
         else {
-            usersJ[i].valid = true
-            result = usersJ[i]
+            value[i].valid = true
+            result = value[i]
+            res.send(result)
             break;
         }
     }
 
-   /*  users.find({userName: req.body.userName}).toArray(
-        function(err, result){
-            if(result.password != req.body.password){
-                console.log(result.password)
-                userResult = {"valid": false}
-                res.send(result)
-            }
-            else {
-                console.log(result)
-                res.send(result)
-            }
-        }
-    ) */
-
-    res.send(result)
-
+    })
 })
 
 app.post('/api/createUser', function(req, res){
@@ -223,5 +198,10 @@ io.on('connection', function(socket){
 
     socket.on("sendMessage", (username, message, channelID)=>{
         io.in(channelID).emit("receiveMessage", username, message)
+    })
+
+    socket.on("userDisconnect", (userName, channelID) => {
+        console.log(userName, "has left")
+        io.in(channelID).emit("userDisconnected", userName)
     })
 })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { SocketService } from '../socket.service';
@@ -19,8 +19,10 @@ export class ChannelComponent implements OnInit {
   message = ""
   receivedMessage: any
   newUser: any
+  userDisconnected: any
   messages: any = [];
   newUsers: any = []
+  disconnectedUsers: any = []
 
   ngOnInit(): void {
 
@@ -33,12 +35,19 @@ export class ChannelComponent implements OnInit {
     }
     this.socketService.initSocket(this.userName, this.channelID)
     this.receivedMessage = this.socketService.receiveMessage((message: any)=>{
-
       this.messages.push({userName: message.userName, message: message.message})
     })
     this.newUser = this.socketService.newUser((message: any)=>{
       this.newUsers.push({userName: message.userName})
     })
+    this.userDisconnected = this.socketService.userDisconnected((message: any)=>{
+      console.log(message.userName)
+      this.disconnectedUsers.push({userName: message.userName})
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.socketService.userDisconnect(this.userName, this.channelID)
   }
 
   sendMessage(){

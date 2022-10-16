@@ -36,5 +36,15 @@ export class SocketService {
       next({userName, message})
     })
   }
+
+  userDisconnect(userName: any, channelID: any): void{
+    this.socket.emit("userDisconnect", userName, channelID)
+  }
+
+  userDisconnected(next: any){
+    this.socket.on("userDIsconnected", (userName: String) =>{
+      next({userName})
+    })
+  }
   
 }
