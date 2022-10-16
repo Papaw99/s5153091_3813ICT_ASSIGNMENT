@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-delete-user',
@@ -11,7 +12,7 @@ export class DeleteUserComponent implements OnInit {
   userName = ""
   users: Array<{userName: string, role: string}> = []
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -21,6 +22,19 @@ export class DeleteUserComponent implements OnInit {
         this.users.push(response[i])
       }
     })
+
+    if(localStorage.getItem('role') === "superAdmin" || localStorage.getItem('role') === "groupAdmin"){
+      
+    }
+    else{
+      alert("Access denied!!!")
+      if(localStorage.getItem('valid') === "true"){
+        this.router.navigate(['/groups'])
+      }
+      else{
+        this.router.navigate(['/'])
+      }
+    }
 
   }
 

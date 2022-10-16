@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { SocketService } from '../socket.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-channel',
@@ -10,7 +11,7 @@ import { SocketService } from '../socket.service';
 })
 export class ChannelComponent implements OnInit {
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private socketService: SocketService) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private socketService: SocketService, private router: Router) { }
 
   channelID: any
   userRole = localStorage.getItem('role')
@@ -29,6 +30,14 @@ export class ChannelComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.channelID = params.get('channelID')
     })
+
+    if(localStorage.getItem('valid') === "true"){
+      
+    }
+    else{
+      alert("Access denied!!!")
+      this.router.navigate(['/'])
+    }
 
     if (this.userRole == "superAdmin" || this.userRole == "groupAdmin"){
       this.isAdmin = true

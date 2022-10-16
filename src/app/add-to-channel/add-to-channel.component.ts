@@ -29,13 +29,18 @@ export class AddToChannelComponent implements OnInit {
       }
     })
 
-    if (localStorage.getItem('valid') === null){
-      alert("Access denied!!!")
-      this.router.navigate(['/'])
+    
+    if(localStorage.getItem('role') === "superAdmin" || localStorage.getItem('role') === "groupAdmin"){
+      
     }
-    else if(localStorage.getItem('role') != "superAdmin" || "groupAdmin"){
+    else{
       alert("Access denied!!!")
-      this.router.navigate(['/groups'])
+      if(localStorage.getItem('valid') === "true"){
+        this.router.navigate(['/groups'])
+      }
+      else{
+        this.router.navigate(['/'])
+      }
     }
 
   }

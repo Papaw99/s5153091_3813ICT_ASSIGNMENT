@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-channel',
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CreateChannelComponent implements OnInit {
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
   groupID: any
   channelName = ""
@@ -19,6 +20,19 @@ export class CreateChannelComponent implements OnInit {
     this.route.paramMap.subscribe(params=>
       {this.groupID = params.get('groupID')}
     )
+
+    if(localStorage.getItem('role') === "superAdmin" || localStorage.getItem('role') === "groupAdmin"){
+      
+    }
+    else{
+      alert("Access denied!!!")
+      if(localStorage.getItem('valid') === "true"){
+        this.router.navigate(['/groups'])
+      }
+      else{
+        this.router.navigate(['/'])
+      }
+    }
 
   }
 

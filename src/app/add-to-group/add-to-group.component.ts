@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-to-group',
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AddToGroupComponent implements OnInit {
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
   user = ""
   groupID: any 
@@ -27,6 +28,19 @@ export class AddToGroupComponent implements OnInit {
         this.users.push(response[i])
       }
     })
+
+    if(localStorage.getItem('role') === "superAdmin" || localStorage.getItem('role') === "groupAdmin"){
+      
+    }
+    else{
+      alert("Access denied!!!")
+      if(localStorage.getItem('valid') === "true"){
+        this.router.navigate(['/groups'])
+      }
+      else{
+        this.router.navigate(['/'])
+      }
+    }
 
   }
 

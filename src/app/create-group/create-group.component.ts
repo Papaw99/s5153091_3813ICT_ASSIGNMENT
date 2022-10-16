@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-group',
@@ -10,9 +11,21 @@ export class CreateGroupComponent implements OnInit {
 
   groupName = ""
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('role') === "superAdmin" || localStorage.getItem('role') === "groupAdmin"){
+      
+    }
+    else{
+      alert("Access denied!!!")
+      if(localStorage.getItem('valid') === "true"){
+        this.router.navigate(['/groups'])
+      }
+      else{
+        this.router.navigate(['/'])
+      }
+    }
   }
 
   createGroup(){

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-groups',
@@ -16,9 +17,17 @@ export class GroupsComponent implements OnInit {
   usersGroups: Array<{groupName: string, groupID: number}> = []
   isAdmin = false
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
+
+    if(localStorage.getItem('valid') === "true"){
+      
+    }
+    else{
+      alert("Access denied!!!")
+      this.router.navigate(['/'])
+    }
 
     this.http.get('http://localhost:3000/api/getGroups').subscribe(res =>{
       let response:any = res;

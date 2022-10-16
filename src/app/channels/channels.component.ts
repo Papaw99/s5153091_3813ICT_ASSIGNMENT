@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,12 +22,20 @@ export class ChannelsComponent implements OnInit {
   userID = localStorage.getItem("userID") as unknown as number
   isAdmin = false
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params=>
       {this.groupID = params.get('groupID')}
     )
+
+    if(localStorage.getItem('valid') === "true"){
+      
+    }
+    else{
+      alert("Access denied!!!")
+      this.router.navigate(['/'])
+    }
 
     this.http.get('http://localhost:3000/api/getChannels').subscribe(res =>{
       let response:any = res;
