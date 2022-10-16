@@ -19,8 +19,12 @@ export class LoginComponent implements OnInit {
   }
 
   checkCredentials(){
-    let bodyData = {"userName": this.userName, "password": this.password}
-    this.http.post('http://localhost:3000/api/auth', bodyData).subscribe(res =>{
+    if (this.userName === "" || this.password === ""){
+      alert("Please fill in all the information!")
+    }
+    else{
+      let bodyData = {"userName": this.userName, "password": this.password}
+      this.http.post('http://localhost:3000/api/auth', bodyData).subscribe(res =>{
       let response:any = res
       if (response.valid == true) {
         localStorage.setItem("userID", response.userID)
@@ -34,6 +38,7 @@ export class LoginComponent implements OnInit {
         alert("Incorrect Credentials")
       }
     })
+    }
   }
 
 }

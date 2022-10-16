@@ -37,11 +37,17 @@ export class CreateChannelComponent implements OnInit {
   }
 
   createChannel(){
-    let bodyData = {"groupID":this.groupID, "channelName": this.channelName}
+
+    if (this.channelName === ""){
+      alert("Please fill in the channel name!")
+    }
+    else {
+      let bodyData = {"groupID":this.groupID, "channelName": this.channelName}
   
-    this.http.post('http://localhost:3000/api/createChannel', bodyData).subscribe(res =>{
-    })
-    alert(this.channelName+ " created")
+      this.http.post('http://localhost:3000/api/createChannel', bodyData).subscribe(res =>{
+      })
+      alert(this.channelName+ " created")
+    }
   }
 
 }

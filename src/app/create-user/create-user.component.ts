@@ -32,10 +32,16 @@ export class CreateUserComponent implements OnInit {
   }
 
   createUser(){
-    let bodyData = {"userName": this.userName, "email": this.email, "password": this.password, "role": this.role}
+    if (this.userName === "" || this.email === "" || this.password === ""){
+      alert("Please fill in all the information!")
+    }
+    else{ 
+      let bodyData = {"userName": this.userName, "email": this.email, "password": this.password, "role": this.role}
 
-    this.http.post('http://localhost:3000/api/createUser', bodyData).subscribe(res =>{
-    })
+      this.http.post('http://localhost:3000/api/createUser', bodyData).subscribe(res =>{
+      })
+      alert(this.userName+" created!")
+    }
   }
 
 }

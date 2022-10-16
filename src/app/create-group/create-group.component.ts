@@ -29,11 +29,17 @@ export class CreateGroupComponent implements OnInit {
   }
 
   createGroup(){
-    let bodyData = {"groupName": this.groupName}
 
-    this.http.post('http://localhost:3000/api/createGroup', bodyData).subscribe(res =>{
-    })
-    alert(this.groupName+ " created")
+    if (this.groupName === ""){
+      alert("Please fill in the group name!")
+    }
+    else {
+      let bodyData = {"groupName": this.groupName}
+
+      this.http.post('http://localhost:3000/api/createGroup', bodyData).subscribe(res =>{
+      })
+      alert(this.groupName+ " created")
+    }
   }
 
 }
