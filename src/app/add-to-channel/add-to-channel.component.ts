@@ -10,7 +10,7 @@ import { Router } from '@angular/router'
 })
 export class AddToChannelComponent implements OnInit {
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router:Router) { }
 
   user = ""
   channelID: any
@@ -29,8 +29,13 @@ export class AddToChannelComponent implements OnInit {
       }
     })
 
-    if (localStorage.getItem('valid') === null ){
+    if (localStorage.getItem('valid') === null){
       alert("Access denied!!!")
+      this.router.navigate(['/'])
+    }
+    else if(localStorage.getItem('role') != "superAdmin" || "groupAdmin"){
+      alert("Access denied!!!")
+      this.router.navigate(['/groups'])
     }
 
   }

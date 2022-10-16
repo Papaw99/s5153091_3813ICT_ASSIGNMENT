@@ -54,11 +54,10 @@ app.post('/api/auth', function(req, res){
         else {
             value[i].valid = true
             result = value[i]
-            res.send(result)
             break;
         }
     }
-
+    res.send(result)
     })
 })
 
