@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { SocketService } from '../socket.service';
 
 @Component({
   selector: 'app-channel',
@@ -9,10 +10,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ChannelComponent implements OnInit {
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private socketService: SocketService) { }
 
   channelID: any
   userRole = localStorage.getItem('role')
+  userName = localStorage.getItem('userName')
   isAdmin = false
   message = ""
 
@@ -25,7 +27,8 @@ export class ChannelComponent implements OnInit {
     if (this.userRole == "superAdmin" || this.userRole == "groupAdmin"){
       this.isAdmin = true
     }
-
+    this.socketService.initSocket(this.userName, this.channelID)
+    this.socketService.sendMessage(this.userName, "Hi")
   }
 
 }

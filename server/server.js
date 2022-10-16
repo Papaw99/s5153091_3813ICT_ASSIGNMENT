@@ -13,6 +13,12 @@ app.use(cors())
 
 const path = require('path');
 const http = require('http').Server(app)
+const io = require('socket.io')(http, {
+    cors: {
+      origin: "http://localhost:4200",
+      methods: ["GET", "POST"]
+    }
+  })
 
 app.use(express.static(path.join(__dirname, '../dist/s5153091-3813-ict-assignment')))
 
@@ -38,7 +44,7 @@ let channelsLength = channels.countDocuments()
 let channelMemberships = database.collection("channelMemberships")
 
 
-app.listen(3000, '127.0.0.1', function(){
+http.listen(3000, '127.0.0.1', function(){
     console.log('server has been started')
 })
 
@@ -206,4 +212,15 @@ app.post('/api/addToGroup', function(req, res){
 app.post('/api/addToChannel', function(req, res){
     let newChannelMemberships = {"userID": parseInt(req.body.userID), "channelID": parseInt(req.body.channelID)}
     channelMemberships.insertOne(newChannelMemberships)
+})
+
+io.on('connection', function(socket){
+    
+    socket.on("joinRoom", (userName, channelID) =>{
+        console.log(userName, "has joined channel", channelID)
+    })
+
+    socket.on("sendMessage", (username, message)=>{
+        console.log(username, message)
+    })
 })
