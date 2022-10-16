@@ -21,6 +21,7 @@ export class CreateChannelComponent implements OnInit {
       {this.groupID = params.get('groupID')}
     )
 
+    // Checking to see if user is admin or not
     if(localStorage.getItem('role') === "superAdmin" || localStorage.getItem('role') === "groupAdmin"){
       
     }
@@ -36,6 +37,7 @@ export class CreateChannelComponent implements OnInit {
 
   }
 
+  // Method to create a channel in the MongoDB database
   createChannel(){
 
     if (this.channelName === ""){

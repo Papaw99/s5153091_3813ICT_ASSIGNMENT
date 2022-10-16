@@ -16,6 +16,7 @@ export class DeleteUserComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // API call to get all the users in the server
     this.http.get('http://localhost:3000/api/getUsers').subscribe(res =>{
       let response:any = res;
       for (let i = 0; i < response.length; i++){
@@ -23,6 +24,7 @@ export class DeleteUserComponent implements OnInit {
       }
     })
 
+    // Checking to see if user is an admin
     if(localStorage.getItem('role') === "superAdmin" || localStorage.getItem('role') === "groupAdmin"){
       
     }
@@ -38,6 +40,7 @@ export class DeleteUserComponent implements OnInit {
 
   }
 
+  // API call to delete the user from MongoDB database
   deleteUser(){
     let bodyData = {"userName": this.userName}
     this.http.post('http://localhost:3000/api/deleteUser', bodyData).subscribe(res=>{

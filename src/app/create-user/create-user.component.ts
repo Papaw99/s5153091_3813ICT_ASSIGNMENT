@@ -17,6 +17,8 @@ export class CreateUserComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
+
+    // Ensuring user is an admin
     if(localStorage.getItem('role') === "superAdmin" || localStorage.getItem('role') === "groupAdmin"){
       
     }
@@ -31,6 +33,7 @@ export class CreateUserComponent implements OnInit {
     }
   }
 
+  // API call to add user to the MongoDB database
   createUser(){
     if (this.userName === "" || this.email === "" || this.password === ""){
       alert("Please fill in all the information!")

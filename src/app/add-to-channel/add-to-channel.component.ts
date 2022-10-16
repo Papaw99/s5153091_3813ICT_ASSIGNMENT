@@ -14,14 +14,15 @@ export class AddToChannelComponent implements OnInit {
 
   user = ""
   channelID: any
-  users: Array<{userName: string, userID: number}> = []
+  users: Array<{userName: string, userID: number}> = [] // Array to store all the users on the app
 
   ngOnInit(): void {
 
     this.route.paramMap.subscribe(params => {
       this.channelID = params.get('channelID')
     })
-
+    
+    // API call top get all the users on the application from the MongoDB database
     this.http.get('http://localhost:3000/api/getUsers').subscribe(res =>{
       let response:any = res;
       for (let i = 0; i < response.length; i++){
@@ -29,7 +30,7 @@ export class AddToChannelComponent implements OnInit {
       }
     })
 
-    
+    // Checks if the user is logged in and is an admin
     if(localStorage.getItem('role') === "superAdmin" || localStorage.getItem('role') === "groupAdmin"){
       
     }
@@ -45,9 +46,11 @@ export class AddToChannelComponent implements OnInit {
 
   }
 
+  // Adding user to a channel
   addToChannel(){
     let bodyData = {"userID": this.user, "channelID": this.channelID}
 
+    // API call to add user to the channel in the MongoDB database
     this.http.post('http://localhost:3000/api/addToChannel', bodyData).subscribe(res =>{
       alert("Added to channel")
     })

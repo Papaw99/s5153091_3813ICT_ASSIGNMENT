@@ -21,6 +21,7 @@ export class GroupsComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // Checking to see if user is logged in
     if(localStorage.getItem('valid') === "true"){
       
     }
@@ -36,6 +37,7 @@ export class GroupsComponent implements OnInit {
       }
     })
 
+    // API call to retreive group membership data from MongoDB database
     this.http.get('http://localhost:3000/api/getGroupMemberships').subscribe(res =>{
       let response:any = res;
       for (let i = 0; i < response.length; i++){
@@ -62,11 +64,13 @@ export class GroupsComponent implements OnInit {
       }
     }) 
 
+    // Checking to see if user is an admin to display admin tools on page
     if (this.userRole == "superAdmin" || this.userRole == "groupAdmin"){
       this.isAdmin = true
     }
   }
 
+  // API call to delete a group from the MongoDB database
   deleteGroup(){
     let bodyData = {"groupID": this.group}
     this.http.post('http://localhost:3000/api/deleteGroup', bodyData).subscribe(res=>{

@@ -29,6 +29,7 @@ export class ChannelsComponent implements OnInit {
       {this.groupID = params.get('groupID')}
     )
 
+    // Check if user is logged in
     if(localStorage.getItem('valid') === "true"){
       
     }
@@ -36,7 +37,8 @@ export class ChannelsComponent implements OnInit {
       alert("Access denied!!!")
       this.router.navigate(['/'])
     }
-
+    
+    // API call to get list of channels
     this.http.get('http://localhost:3000/api/getChannels').subscribe(res =>{
       let response:any = res;
       for (let i = 0; i < response.length; i++){
@@ -50,7 +52,8 @@ export class ChannelsComponent implements OnInit {
         }
       }
     })
-
+     
+    // API call to get channel membership data
     this.http.get('http://localhost:3000/api/getChannelMemberships').subscribe(res =>{
       let response:any = res;
       for (let i = 0; i < response.length; i++){
@@ -78,12 +81,14 @@ export class ChannelsComponent implements OnInit {
 
     })
 
+    // Check if user is admin or not to display admin tools
     if (this.userRole == "superAdmin" || this.userRole == "groupAdmin"){
       this.isAdmin = true
     }
     
   }
 
+  // API call to delete channel from MongoDB database
   deleteChannel(){
     let bodyData = {"channelID": this.channel}
     this.http.post('http://localhost:3000/api/deleteChannel', bodyData).subscribe(res=>{

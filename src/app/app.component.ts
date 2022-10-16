@@ -16,6 +16,8 @@ export class AppComponent {
   constructor(private router: Router) { }
 
   ngDoCheck(): void{
+
+    // Checking is user is admin
     this.valid = localStorage.getItem('valid')
     this.role = localStorage.getItem('role')
     if (this.role == "superAdmin"){
@@ -23,6 +25,7 @@ export class AppComponent {
     }
   }
 
+  // Logout function
   logOut(){
     localStorage.clear()
     this.router.navigateByUrl('')

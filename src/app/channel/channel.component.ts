@@ -31,6 +31,7 @@ export class ChannelComponent implements OnInit {
       this.channelID = params.get('channelID')
     })
 
+    // Check if connected user is logged in
     if(localStorage.getItem('valid') === "true"){
       
     }
@@ -39,13 +40,20 @@ export class ChannelComponent implements OnInit {
       this.router.navigate(['/'])
     }
 
+    // Check if user is an admin. Used to display admin actions based on whether user is admin or not
     if (this.userRole == "superAdmin" || this.userRole == "groupAdmin"){
       this.isAdmin = true
     }
+
+    // Initiate socket connection
     this.socketService.initSocket(this.userName, this.channelID)
+
+    // Receive messages from other clients
     this.receivedMessage = this.socketService.receiveMessage((message: any)=>{
       this.messages.push({userName: message.userName, message: message.message})
     })
+
+    // Receive messages when another client joings the channel
     this.newUser = this.socketService.newUser((message: any)=>{
       this.newUsers.push({userName: message.userName})
     })
@@ -59,7 +67,9 @@ export class ChannelComponent implements OnInit {
     this.socketService.userDisconnect(this.userName, this.channelID)
   }
 
+  // Send message to the channel
   sendMessage(){
+    // SocketService used to send message. Passing the userName, message and channelID
     this.socketService.sendMessage(this.userName, this.message, this.channelID)
   }
 

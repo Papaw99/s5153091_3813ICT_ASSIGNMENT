@@ -14,6 +14,8 @@ export class CreateGroupComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
+
+    // Checking to make sure user is an admin
     if(localStorage.getItem('role') === "superAdmin" || localStorage.getItem('role') === "groupAdmin"){
       
     }
@@ -28,6 +30,7 @@ export class CreateGroupComponent implements OnInit {
     }
   }
 
+  // API call to make a group on the MongoDB database
   createGroup(){
 
     if (this.groupName === ""){
