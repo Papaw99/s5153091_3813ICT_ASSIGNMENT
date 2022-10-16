@@ -1,6 +1,7 @@
 <h1>Welcome to the channel!</h1> <button *ngIf="isAdmin" [routerLink]="['/add-to-channel', channelID]" type="button" class="btn btn-warning">Add to Channel</button><br><br>
 <ul style="list-style: none;">
     <li *ngFor="let message of messages"><b>{{message.userName}}:</b> {{message.message}}</li>
+    <li *ngFor="let user of newUsers"><b>{{user.userName}} has joined the chat!</b></li>
 </ul>
 
 <form>

@@ -21,6 +21,12 @@ export class SocketService {
     this.socket.emit("joinRoom", userName, channelID)
   }
 
+  newUser(next: any){
+    this.socket.on("newUser", (userName: String) =>{
+      next({userName})
+    })
+  }
+
   sendMessage(userName: any, message: any, channelID: any){
     this.socket.emit("sendMessage", userName, message, channelID)
   }

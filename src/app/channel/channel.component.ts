@@ -16,10 +16,11 @@ export class ChannelComponent implements OnInit {
   userRole = localStorage.getItem('role')
   userName = localStorage.getItem('userName')
   isAdmin = false
-  message = "test"
+  message = ""
   receivedMessage: any
-  receivedUser: any;
+  newUser: any
   messages: any = [];
+  newUsers: any = []
 
   ngOnInit(): void {
 
@@ -32,9 +33,11 @@ export class ChannelComponent implements OnInit {
     }
     this.socketService.initSocket(this.userName, this.channelID)
     this.receivedMessage = this.socketService.receiveMessage((message: any)=>{
-      this.receivedUser = message.userName 
-      this.receivedMessage = message.message
-      this.messages.push({userName: this.receivedUser, message: this.receivedMessage})
+
+      this.messages.push({userName: message.userName, message: message.message})
+    })
+    this.newUser = this.socketService.newUser((message: any)=>{
+      this.newUsers.push({userName: message.userName})
     })
   }
 

@@ -218,6 +218,7 @@ io.on('connection', function(socket){
     
     socket.on("joinRoom", (userName, channelID) =>{
         socket.join(channelID.toString())
+        io.in(channelID).emit("newUser", userName)
     })
 
     socket.on("sendMessage", (username, message, channelID)=>{
