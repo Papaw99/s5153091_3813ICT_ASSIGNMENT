@@ -21,12 +21,14 @@ export class SocketService {
     this.socket.emit("joinRoom", userName, channelID)
   }
 
-  sendMessage(userName: any, message: any){
-    this.socket.emit("sendMessage", userName, message)
+  sendMessage(userName: any, message: any, channelID: any){
+    this.socket.emit("sendMessage", userName, message, channelID)
   }
 
   receiveMessage(){
-    this.socket.on("receiveMessage", {userName: String, message: String})
+    this.socket.on("receiveMessage", (userName: any, message: any) => {
+      return({userName, message})
+    })
   }
   
 }

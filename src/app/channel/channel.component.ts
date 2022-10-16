@@ -28,7 +28,11 @@ export class ChannelComponent implements OnInit {
       this.isAdmin = true
     }
     this.socketService.initSocket(this.userName, this.channelID)
-    this.socketService.sendMessage(this.userName, "Hi")
+    this.socketService.receiveMessage()
+  }
+
+  sendMessage(){
+    this.socketService.sendMessage(this.userName, this.message, this.channelID)
   }
 
 }
